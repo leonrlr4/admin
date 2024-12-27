@@ -1,0 +1,4863 @@
+openapi: 3.0.3
+info:
+  title: Unicorn Studio API Document
+  version: 0.0.0
+  description: Unicorn Studio API Document
+paths:
+  /account/:
+    get:
+      operationId: account_retrieve
+      parameters:
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+    post:
+      operationId: account_create
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AccountRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AccountRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/{account_id}:
+    get:
+      operationId: account_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+          description: ''
+    put:
+      operationId: account_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AccountRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AccountRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: account_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /account/email/{account_id}:
+    post:
+      operationId: account_email_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EmailRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EmailRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/import:
+    put:
+      operationId: account_import_update
+      tags:
+      - account
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AccountImportRequestRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountImportRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/login:
+    post:
+      operationId: account_login_create
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoginRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoginRequestRequest'
+        required: true
+      security:
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Login'
+          description: ''
+  /account/logout:
+    post:
+      operationId: account_logout_create
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LogoutRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LogoutRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/rule/{account_id}:
+    get:
+      operationId: account_rule_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rule'
+          description: ''
+    post:
+      operationId: account_rule_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RuleRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RuleRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RuleRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /account/token/refresh:
+    post:
+      operationId: account_token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /bill/{seller_account_id}/{buyer_account_id}:
+    post:
+      operationId: bill_create
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - bill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BillRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BillRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /bill/{seller_account_id}/{buyer_account_id}/{bill_id}:
+    put:
+      operationId: bill_update
+      parameters:
+      - in: path
+        name: bill_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - bill
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillRequestPutRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BillRequestPutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BillRequestPutRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: bill_destroy
+      parameters:
+      - in: path
+        name: bill_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - bill
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /bill/detail/{seller_account_id}/{buyer_account_id}:
+    get:
+      operationId: bill_detail_retrieve
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - all
+          - back
+          - cancel
+          - pendingforpayment
+          - processing
+          - shipped
+          default: pendingforpayment
+        description: Bill status
+      tags:
+      - bill
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bill'
+          description: ''
+  /bill/detail/{seller_account_id}/{buyer_account_id}/{bill_id}:
+    get:
+      operationId: bill_detail_retrieve_2
+      parameters:
+      - in: path
+        name: bill_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - all
+          - back
+          - cancel
+          - pendingforpayment
+          - processing
+          - shipped
+          default: pendingforpayment
+        description: Bill status
+      tags:
+      - bill
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bill'
+          description: ''
+  /bill/import/{account_id}:
+    put:
+      operationId: bill_import_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - bill
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BillImportRequestRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillImportRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /bill/status/import/{account_id}:
+    put:
+      operationId: bill_status_import_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - bill
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BillStatusImportRequestRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BillStatusImportRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/{account_id}:
+    get:
+      operationId: commodity_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: brand_id
+        schema:
+          type: integer
+        description: ID of brand
+      - in: query
+        name: group_id
+        schema:
+          type: integer
+        description: ID of group
+      - in: query
+        name: is_discount
+        schema:
+          type: boolean
+        description: Discounted commodities
+      - in: query
+        name: is_latest
+        schema:
+          type: boolean
+        description: Latest commodities
+      - in: query
+        name: is_show
+        schema:
+          type: boolean
+        description: Showed commodities
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Search
+      - in: query
+        name: series_id
+        schema:
+          type: integer
+        description: ID of series
+      - in: query
+        name: sort_by
+        schema:
+          type: string
+          enum:
+          - name
+          - price
+          - sku
+        description: Sorting item
+      - in: query
+        name: sort_order
+        schema:
+          type: string
+          enum:
+          - ascending
+          - descending
+          default: ascending
+        description: Sorting order
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commodity'
+          description: ''
+    post:
+      operationId: commodity_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommodityRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/{account_id}/{commodity_id}:
+    get:
+      operationId: commodity_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: brand_id
+        schema:
+          type: integer
+        description: ID of brand
+      - in: path
+        name: commodity_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: group_id
+        schema:
+          type: integer
+        description: ID of group
+      - in: query
+        name: is_discount
+        schema:
+          type: boolean
+        description: Discounted commodities
+      - in: query
+        name: is_latest
+        schema:
+          type: boolean
+        description: Latest commodities
+      - in: query
+        name: is_show
+        schema:
+          type: boolean
+        description: Showed commodities
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: query
+        name: search
+        schema:
+          type: string
+        description: Search
+      - in: query
+        name: series_id
+        schema:
+          type: integer
+        description: ID of series
+      - in: query
+        name: sort_by
+        schema:
+          type: string
+          enum:
+          - name
+          - price
+          - sku
+        description: Sorting item
+      - in: query
+        name: sort_order
+        schema:
+          type: string
+          enum:
+          - ascending
+          - descending
+          default: ascending
+        description: Sorting order
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commodity'
+          description: ''
+    put:
+      operationId: commodity_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: commodity_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommodityRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: commodity_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: commodity_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /commodity/brand/{account_id}:
+    get:
+      operationId: commodity_brand_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+    post:
+      operationId: commodity_brand_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BrandRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BrandRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/brand/{account_id}/{brand_id}:
+    get:
+      operationId: commodity_brand_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+          description: ''
+    put:
+      operationId: commodity_brand_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrandRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/BrandRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/BrandRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: commodity_brand_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /commodity/config/{account_id}:
+    get:
+      operationId: commodity_config_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Config'
+          description: ''
+    post:
+      operationId: commodity_config_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ConfigRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ConfigRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: commodity_config_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ConfigRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ConfigRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/function/{account_id}:
+    post:
+      operationId: commodity_function_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityFunctionRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommodityFunctionRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityFunctionRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/group/{account_id}:
+    get:
+      operationId: commodity_group_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+    post:
+      operationId: commodity_group_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GroupRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GroupRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/group/{account_id}/{group_id}:
+    get:
+      operationId: commodity_group_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: group_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+          description: ''
+    put:
+      operationId: commodity_group_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: group_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GroupRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GroupRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: commodity_group_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: group_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /commodity/import/{account_id}:
+    put:
+      operationId: commodity_import_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityImportRequestRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityImportRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/import/reverse/{account_id}:
+    put:
+      operationId: commodity_import_reverse_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityReverseImportRequestRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityReverseImportRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/packing_material/import/{account_id}:
+    put:
+      operationId: commodity_packing_material_import_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityPackingMaterialImportRequestRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityPackingMaterialImportRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/photo/{account_id}:
+    put:
+      operationId: commodity_photo_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityPhotoRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommodityPhotoRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityPhotoRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/recommend/{account_id}/{commodity_id}:
+    get:
+      operationId: commodity_recommend_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: commodity_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Commodity'
+          description: ''
+    put:
+      operationId: commodity_recommend_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: commodity_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityRecommendRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CommodityRecommendRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CommodityRecommendRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/series/{account_id}:
+    get:
+      operationId: commodity_series_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: master_only
+        schema:
+          type: boolean
+        description: Only fetch master series
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+          description: ''
+    post:
+      operationId: commodity_series_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /commodity/series/{account_id}/{series_id}:
+    get:
+      operationId: commodity_series_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: master_only
+        schema:
+          type: boolean
+        description: Only fetch master series
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Series'
+          description: ''
+    post:
+      operationId: commodity_series_create_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: commodity_series_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SeriesRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: commodity_series_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - commodity
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /order/{buyer_account_id}:
+    post:
+      operationId: order_create
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: order_destroy
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - order
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /order/{buyer_account_id}/{order_id}:
+    put:
+      operationId: order_update
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: order_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequestPutRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/OrderRequestPutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/OrderRequestPutRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: order_destroy_2
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: order_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - order
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /order/detail/{seller_account_id}/{buyer_account_id}:
+    get:
+      operationId: order_detail_retrieve
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - all
+          - established
+          - notestablished
+          default: notestablished
+        description: Order status
+      tags:
+      - order
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /order/detail/{seller_account_id}/{buyer_account_id}/{order_id}:
+    get:
+      operationId: order_detail_retrieve_2
+      parameters:
+      - in: path
+        name: buyer_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: path
+        name: order_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: seller_account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: status
+        schema:
+          type: string
+          enum:
+          - all
+          - established
+          - notestablished
+          default: notestablished
+        description: Order status
+      tags:
+      - order
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /shop/about/{account_id}:
+    get:
+      operationId: shop_about_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboutPage'
+          description: ''
+    put:
+      operationId: shop_about_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AboutPageRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AboutPageRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AboutPageRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /shop/campaign/{account_id}:
+    get:
+      operationId: shop_campaign_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignPage'
+          description: ''
+    post:
+      operationId: shop_campaign_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignPageRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CampaignPageRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CampaignPageRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /shop/campaign/{account_id}/{campaign_id}:
+    get:
+      operationId: shop_campaign_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: campaign_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignPage'
+          description: ''
+    put:
+      operationId: shop_campaign_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: campaign_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CampaignPageRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CampaignPageRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CampaignPageRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: shop_campaign_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: campaign_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /shop/home/{account_id}:
+    get:
+      operationId: shop_home_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePage'
+          description: ''
+    put:
+      operationId: shop_home_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HomePageRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HomePageRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HomePageRequestRequest'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /shop/home/brand/{account_id}:
+    get:
+      operationId: shop_home_brand_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageBrand'
+          description: ''
+    post:
+      operationId: shop_home_brand_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HomePageBrandRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HomePageBrandRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HomePageBrandRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /shop/home/brand/{account_id}/{brand_id}:
+    get:
+      operationId: shop_home_brand_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageBrand'
+          description: ''
+    put:
+      operationId: shop_home_brand_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HomePageBrandRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HomePageBrandRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HomePageBrandRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: shop_home_brand_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: brand_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /shop/home/series/{account_id}:
+    get:
+      operationId: shop_home_series_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageSeries'
+          description: ''
+    post:
+      operationId: shop_home_series_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HomePageSeriesRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HomePageSeriesRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HomePageSeriesRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /shop/home/series/{account_id}/{series_id}:
+    get:
+      operationId: shop_home_series_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HomePageSeries'
+          description: ''
+    put:
+      operationId: shop_home_series_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HomePageSeriesRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/HomePageSeriesRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/HomePageSeriesRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: shop_home_series_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: series_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /shop/promotion/{account_id}:
+    get:
+      operationId: shop_promotion_retrieve
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromotionPage'
+          description: ''
+    post:
+      operationId: shop_promotion_create
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionPageRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PromotionPageRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PromotionPageRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /shop/promotion/{account_id}/{promotion_id}:
+    get:
+      operationId: shop_promotion_retrieve_2
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          default: 50
+        description: Pagenation limit
+      - in: query
+        name: offset
+        schema:
+          type: integer
+          default: 0
+        description: Pagenation offset
+      - in: path
+        name: promotion_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromotionPage'
+          description: ''
+    put:
+      operationId: shop_promotion_update
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: promotion_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionPageRequestRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PromotionPageRequestRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PromotionPageRequestRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: shop_promotion_destroy
+      parameters:
+      - in: path
+        name: account_id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: promotion_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - shop
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    AboutPage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/AboutPagePhoto'
+        description:
+          type: string
+        seller:
+          type: integer
+      required:
+      - id
+      - photos
+      - seller
+    AboutPagePhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        button_text:
+          type: string
+          maxLength: 64
+        extra_url:
+          type: string
+          format: uri
+          maxLength: 512
+        sequence:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+      required:
+      - id
+      - url
+    AboutPageRequestRequest:
+      type: object
+      properties:
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        video:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_2:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_3:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_4:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        extra:
+          allOf:
+          - $ref: '#/components/schemas/AccountExtra'
+          readOnly: true
+        password:
+          type: string
+          maxLength: 128
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        is_login:
+          type: boolean
+        login_ip:
+          type: string
+          maxLength: 32
+        expired_time:
+          type: string
+          format: date-time
+          nullable: true
+        rule:
+          $ref: '#/components/schemas/RuleEnum'
+        groups:
+          type: array
+          items:
+            type: integer
+          description: The groups this user belongs to. A user will get all permissions
+            granted to each of their groups.
+        user_permissions:
+          type: array
+          items:
+            type: integer
+          description: Specific permissions for this user.
+      required:
+      - email
+      - extra
+      - id
+      - password
+      - username
+    AccountExtra:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        business_name:
+          type: string
+          maxLength: 64
+        resale:
+          type: string
+          maxLength: 32
+        address:
+          type: string
+          maxLength: 128
+        city:
+          type: string
+          maxLength: 32
+        state:
+          type: string
+          maxLength: 32
+        country:
+          type: string
+          maxLength: 32
+        zip_code:
+          type: string
+          maxLength: 16
+        phone:
+          type: string
+          maxLength: 16
+        fax:
+          type: string
+          maxLength: 16
+        owner_officer:
+          type: string
+          maxLength: 128
+        business_website:
+          type: string
+          maxLength: 128
+        organization_type:
+          $ref: '#/components/schemas/OrganizationTypeEnum'
+        organization_type_other:
+          type: string
+          maxLength: 16
+        organization_type_corp_state:
+          type: string
+          maxLength: 16
+        billing_address:
+          type: string
+          maxLength: 128
+        billing_city:
+          type: string
+          maxLength: 32
+        billing_state:
+          type: string
+          maxLength: 32
+        billing_zip_code:
+          type: string
+          maxLength: 16
+        billing_phone:
+          type: string
+          maxLength: 16
+        billing_fax:
+          type: string
+          maxLength: 16
+        ein:
+          type: string
+          maxLength: 16
+        employee_count:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+        year_started:
+          type: string
+          maxLength: 8
+        is_purchase_order:
+          type: boolean
+        business_location:
+          $ref: '#/components/schemas/BusinessLocationEnum'
+        business_type:
+          $ref: '#/components/schemas/BusinessTypeEnum'
+        business_type_other:
+          type: string
+          maxLength: 16
+        product_categories:
+          type: string
+        product_lines:
+          type: string
+        brands:
+          type: string
+        monthly_book_sales:
+          $ref: '#/components/schemas/MonthlyBookSalesEnum'
+        refer_company:
+          type: string
+          maxLength: 64
+        refer_company_business_type:
+          type: string
+          maxLength: 32
+        refer_company_address:
+          type: string
+          maxLength: 128
+        refer_company_city:
+          type: string
+          maxLength: 32
+        refer_company_state:
+          type: string
+          maxLength: 32
+        refer_company_zip_code:
+          type: string
+          maxLength: 16
+        refer_company_email:
+          type: string
+          format: email
+          maxLength: 254
+        refer_company_phone:
+          type: string
+          maxLength: 16
+        refer_company_payment_terms:
+          type: string
+          maxLength: 64
+        refer_company2:
+          type: string
+          maxLength: 64
+        refer_company_business_type2:
+          type: string
+          maxLength: 32
+        refer_company_address2:
+          type: string
+          maxLength: 128
+        refer_company_city2:
+          type: string
+          maxLength: 32
+        refer_company_state2:
+          type: string
+          maxLength: 32
+        refer_company_zip_code2:
+          type: string
+          maxLength: 16
+        refer_company_email2:
+          type: string
+          format: email
+          maxLength: 254
+        refer_company_phone2:
+          type: string
+          maxLength: 16
+        refer_company_payment_terms2:
+          type: string
+          maxLength: 64
+        refer_company3:
+          type: string
+          maxLength: 64
+        refer_company_business_type3:
+          type: string
+          maxLength: 32
+        refer_company_address3:
+          type: string
+          maxLength: 128
+        refer_company_city3:
+          type: string
+          maxLength: 32
+        refer_company_state3:
+          type: string
+          maxLength: 32
+        refer_company_zip_code3:
+          type: string
+          maxLength: 16
+        refer_company_email3:
+          type: string
+          format: email
+          maxLength: 254
+        refer_company_phone3:
+          type: string
+          maxLength: 16
+        refer_company_payment_terms3:
+          type: string
+          maxLength: 64
+        updated_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        account:
+          type: integer
+      required:
+      - account
+      - id
+      - updated_time
+    AccountImportRequestRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+      required:
+      - file
+    AccountRequestRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        business_name:
+          type: string
+          minLength: 1
+          default: ''
+        resale:
+          type: string
+          minLength: 1
+          default: ''
+        address:
+          type: string
+          minLength: 1
+          default: ''
+        city:
+          type: string
+          minLength: 1
+          default: ''
+        state:
+          type: string
+          minLength: 1
+          default: ''
+        country:
+          type: string
+          minLength: 1
+          default: ''
+        zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        phone:
+          type: string
+          minLength: 1
+          default: ''
+        fax:
+          type: string
+          minLength: 1
+          default: ''
+        owner_officer:
+          type: string
+          minLength: 1
+          default: ''
+        business_website:
+          type: string
+          minLength: 1
+          default: ''
+        organization_type:
+          $ref: '#/components/schemas/OrganizationTypeEnum'
+        organization_type_other:
+          type: string
+          minLength: 1
+          default: ''
+        organization_type_corp_state:
+          type: string
+          minLength: 1
+          default: ''
+        billing_address:
+          type: string
+          minLength: 1
+          default: ''
+        billing_city:
+          type: string
+          minLength: 1
+          default: ''
+        billing_state:
+          type: string
+          minLength: 1
+          default: ''
+        billing_zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        billing_phone:
+          type: string
+          minLength: 1
+          default: ''
+        billing_fax:
+          type: string
+          minLength: 1
+          default: ''
+        ein:
+          type: string
+          minLength: 1
+          default: ''
+        employee_count:
+          type: integer
+          default: 0
+        year_started:
+          type: string
+          minLength: 1
+          default: ''
+        is_purchase_order:
+          type: boolean
+          default: false
+        business_location:
+          $ref: '#/components/schemas/BusinessLocationEnum'
+        business_type:
+          $ref: '#/components/schemas/BusinessTypeEnum'
+        business_type_other:
+          type: string
+          minLength: 1
+          default: ''
+        product_categories:
+          type: string
+          minLength: 1
+          default: ''
+        product_lines:
+          type: string
+          minLength: 1
+          default: ''
+        brands:
+          type: string
+          minLength: 1
+          default: ''
+        monthly_book_sales:
+          $ref: '#/components/schemas/MonthlyBookSalesEnum'
+        refer_company:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_business_type:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_address:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_city:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_state:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_email:
+          type: string
+          format: email
+          minLength: 1
+          default: ''
+        refer_company_phone:
+          type: string
+          minLength: 1
+          default: ''
+        refer_comapny_payment:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_business_type2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_address2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_city2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_state2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_zip_code2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_email2:
+          type: string
+          format: email
+          minLength: 1
+          default: ''
+        refer_company_phone2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_comapny_payment2:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_business_type3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_address3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_city3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_state3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_zip_code3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_company_email3:
+          type: string
+          format: email
+          minLength: 1
+          default: ''
+        refer_company_phone3:
+          type: string
+          minLength: 1
+          default: ''
+        refer_comapny_payment3:
+          type: string
+          minLength: 1
+          default: ''
+      required:
+      - business_location
+      - business_type
+      - email
+      - monthly_book_sales
+      - organization_type
+      - password
+      - username
+    ActionEnum:
+      enum:
+      - config
+      - gpt
+      type: string
+      description: |-
+        * `config` - Config
+        * `gpt` - GPT
+    AvailableEnum:
+      enum:
+      - tbd
+      - now
+      - reason
+      type: string
+      description: |-
+        * `tbd` - TBD
+        * `now` - NOW
+        * `reason` - REASON
+    Bill:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        bill_orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        ref_number:
+          type: string
+          maxLength: 128
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        billing_email:
+          type: string
+          format: email
+          maxLength: 254
+        billing_address:
+          type: string
+          maxLength: 128
+        billing_city:
+          type: string
+          maxLength: 32
+        billing_state:
+          type: string
+          maxLength: 32
+        billing_zip_code:
+          type: string
+          maxLength: 16
+        billing_phone:
+          type: string
+          maxLength: 16
+        billing_contact:
+          type: string
+          maxLength: 32
+        shipping_email:
+          type: string
+          format: email
+          maxLength: 254
+        shipping_address:
+          type: string
+          maxLength: 128
+        shipping_city:
+          type: string
+          maxLength: 32
+        shipping_state:
+          type: string
+          maxLength: 32
+        shipping_zip_code:
+          type: string
+          maxLength: 16
+        shipping_phone:
+          type: string
+          maxLength: 16
+        shipping_contact:
+          type: string
+          maxLength: 32
+        country:
+          type: string
+          maxLength: 32
+        status:
+          $ref: '#/components/schemas/Status581Enum'
+        description:
+          type: string
+        status_updated_time:
+          type: string
+          format: date-time
+          nullable: true
+        expected_shipping_time:
+          type: string
+          format: date-time
+          nullable: true
+        shipped_time:
+          type: string
+          format: date-time
+          nullable: true
+        created_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        updated_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        seller:
+          type: integer
+        buyer:
+          type: integer
+      required:
+      - bill_orders
+      - buyer
+      - created_time
+      - id
+      - seller
+      - updated_time
+    BillImportRequestRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+      required:
+      - file
+    BillRequestPutRequest:
+      type: object
+      properties:
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        billing_email:
+          type: string
+          minLength: 1
+          default: ''
+        billing_address:
+          type: string
+          minLength: 1
+          default: ''
+        billing_city:
+          type: string
+          minLength: 1
+          default: ''
+        billing_state:
+          type: string
+          minLength: 1
+          default: ''
+        billing_zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        billing_phone:
+          type: string
+          minLength: 1
+          default: ''
+        billing_contact:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_email:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_address:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_city:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_state:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_phone:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_contact:
+          type: string
+          minLength: 1
+          default: ''
+        country:
+          type: string
+          minLength: 1
+          default: ''
+        status:
+          $ref: '#/components/schemas/Status581Enum'
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        expected_shipping_time:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - amount
+      - status
+    BillRequestRequest:
+      type: object
+      properties:
+        order_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        billing_email:
+          type: string
+          minLength: 1
+          default: ''
+        billing_address:
+          type: string
+          minLength: 1
+          default: ''
+        billing_city:
+          type: string
+          minLength: 1
+          default: ''
+        billing_state:
+          type: string
+          minLength: 1
+          default: ''
+        billing_zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        billing_phone:
+          type: string
+          minLength: 1
+          default: ''
+        billing_contact:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_email:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_address:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_city:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_state:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_zip_code:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_phone:
+          type: string
+          minLength: 1
+          default: ''
+        shipping_contact:
+          type: string
+          minLength: 1
+          default: ''
+        country:
+          type: string
+          minLength: 1
+          default: ''
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        expected_shipping_time:
+          type: string
+          format: date-time
+          nullable: true
+    BillStatusImportRequestRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+      required:
+      - file
+    BlankEnum:
+      enum:
+      - ''
+    Brand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        photo_url:
+          type: string
+          readOnly: true
+        banner_url:
+          type: string
+          readOnly: true
+        icon_url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        invalid:
+          type: boolean
+      required:
+      - banner_url
+      - icon_url
+      - id
+      - name
+      - photo_url
+    BrandRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        photo:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        banner:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        icon:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+      required:
+      - name
+    BusinessLocationEnum:
+      enum:
+      - home
+      - commercialbuilding
+      type: string
+      description: |-
+        * `home` - Home
+        * `commercialbuilding` - Commercial Building
+    BusinessTypeEnum:
+      enum:
+      - manufacturer
+      - importer
+      - wholesaler
+      - brickandmortar
+      - ecommerce
+      - other
+      type: string
+      description: |-
+        * `manufacturer` - Manufacturer
+        * `importer` - Importer
+        * `wholesaler` - Wholesaler
+        * `brickandmortar` - Brick and Mortar
+        * `ecommerce` - E-Commerce
+        * `other` - Other
+    CampaignPage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/CampaignPagePhoto'
+        name:
+          type: string
+          maxLength: 128
+        description:
+          type: string
+        invalid:
+          type: boolean
+        seller:
+          type: integer
+        commodities:
+          type: array
+          items:
+            type: integer
+      required:
+      - id
+      - name
+      - photos
+      - seller
+    CampaignPagePhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        button_text:
+          type: string
+          maxLength: 64
+        extra_url:
+          type: string
+          format: uri
+          maxLength: 512
+        sequence:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+      required:
+      - id
+      - url
+    CampaignPageRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        commodity_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+        video:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_2:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_3:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_4:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+      required:
+      - name
+    Commodity:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        size:
+          type: string
+          readOnly: true
+        packing:
+          type: string
+          readOnly: true
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommodityPhoto'
+        recommend_commodities:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommodityRecommend'
+        sku:
+          type: string
+          description: ItemNo
+          maxLength: 32
+        barcode:
+          type: string
+          description: Barcode
+          maxLength: 64
+        name:
+          type: string
+          description: Description
+          maxLength: 128
+        cuft:
+          type: string
+          description: CuFt
+          maxLength: 32
+        length:
+          type: string
+          description: Size L
+          maxLength: 16
+        width:
+          type: string
+          description: Size W
+          maxLength: 16
+        height:
+          type: string
+          description: Size H
+          maxLength: 16
+        material:
+          type: string
+          description: Material
+          maxLength: 32
+        material_parts:
+          type: string
+          description: Material_parts
+          maxLength: 32
+        packing_material:
+          oneOf:
+          - $ref: '#/components/schemas/PackingMaterialEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+        story:
+          type: string
+          description: Story
+        available:
+          allOf:
+          - $ref: '#/components/schemas/AvailableEnum'
+          description: |-
+            Available
+
+            * `tbd` - TBD
+            * `now` - NOW
+            * `reason` - REASON
+        available_description:
+          type: string
+          maxLength: 256
+        is_show:
+          type: boolean
+          description: prdshow
+        is_anonymous_show:
+          type: boolean
+        is_latest:
+          type: boolean
+          description: new
+        is_discount:
+          type: boolean
+          description: Discount
+        sell_type:
+          allOf:
+          - $ref: '#/components/schemas/SellTypeEnum'
+          description: |-
+            perset
+
+            * `unit` - Unit
+            * `set` - Set
+            * `pack` - Pack
+        box_class:
+          type: string
+          description: boxclass
+          maxLength: 32
+        box_quantity:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+          description: Box Qty. packing
+        inner_quantity:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+          description: innerqty
+        moq:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+          description: buyone
+        latest_sequence:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+          description: newsort
+        note:
+          type: string
+          description: notetxt
+        available_time:
+          type: string
+          format: date-time
+          nullable: true
+        onshelf_time:
+          type: string
+          format: date-time
+          nullable: true
+          description: productdate
+        created_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        updated_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        seller:
+          type: integer
+        brand:
+          type: integer
+          nullable: true
+          description: series
+        series:
+          type: array
+          items:
+            type: integer
+          description: sub_series
+        groups:
+          type: array
+          items:
+            type: integer
+          description: Property
+      required:
+      - created_time
+      - id
+      - name
+      - packing
+      - photos
+      - recommend_commodities
+      - seller
+      - size
+      - sku
+      - tags
+      - updated_time
+    CommodityFunctionRequestRequest:
+      type: object
+      properties:
+        action:
+          $ref: '#/components/schemas/ActionEnum'
+        commodity_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        target:
+          type: string
+          minLength: 1
+          default: ''
+      required:
+      - action
+    CommodityImportRequestRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+      required:
+      - file
+    CommodityPackingMaterialImportRequestRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+      required:
+      - file
+    CommodityPhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        url:
+          type: string
+          readOnly: true
+        sequence:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+      required:
+      - id
+      - name
+      - url
+    CommodityPhotoRequestRequest:
+      type: object
+      properties:
+        photos:
+          type: array
+          items:
+            type: string
+            format: binary
+            default: null
+        video:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+      required:
+      - photos
+    CommodityRecommend:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommodityPhoto'
+      required:
+      - id
+      - name
+      - photos
+    CommodityRecommendRequestRequest:
+      type: object
+      properties:
+        commodity_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+    CommodityRequestRequest:
+      type: object
+      properties:
+        sku:
+          type: string
+          minLength: 1
+        barcode:
+          type: string
+          minLength: 1
+          default: ''
+        name:
+          type: string
+          minLength: 1
+        cuft:
+          type: string
+          minLength: 1
+          default: ''
+        length:
+          type: string
+          minLength: 1
+          default: ''
+        width:
+          type: string
+          minLength: 1
+          default: ''
+        height:
+          type: string
+          minLength: 1
+          default: ''
+        wholesale_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          default: '0.00'
+        suggested_retail_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          default: '0.00'
+        discount_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+          default: '0.00'
+        brand_id:
+          type: integer
+          nullable: true
+        series_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        group_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        material:
+          type: string
+          minLength: 1
+          default: ''
+        material_parts:
+          type: string
+          minLength: 1
+          default: ''
+        packing_material:
+          allOf:
+          - $ref: '#/components/schemas/PackingMaterialEnum'
+          default: ''
+        story:
+          type: string
+          minLength: 1
+          default: ''
+        available:
+          $ref: '#/components/schemas/AvailableEnum'
+        available_description:
+          type: string
+          minLength: 1
+          default: ''
+        is_show:
+          type: boolean
+          default: false
+        is_latest:
+          type: boolean
+          default: false
+        is_discount:
+          type: boolean
+          default: false
+        sell_type:
+          $ref: '#/components/schemas/SellTypeEnum'
+        box_class:
+          type: string
+          minLength: 1
+          default: ''
+        box_quantity:
+          type: integer
+          default: 0
+        inner_quantity:
+          type: integer
+          default: 0
+        moq:
+          type: integer
+          default: 0
+        latest_sequence:
+          type: integer
+          default: 0
+        note:
+          type: string
+          minLength: 1
+          default: ''
+        available_time:
+          type: string
+          format: date-time
+          nullable: true
+        video:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_2:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_3:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_4:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_5:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_6:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_7:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_8:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_9:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_10:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+      required:
+      - available
+      - name
+      - sell_type
+      - sku
+    CommodityReverseImportRequestRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+      required:
+      - file
+    Config:
+      type: object
+      properties:
+        moq_default:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+        moq_price_limit:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+    ConfigRequestRequest:
+      type: object
+      properties:
+        moq_default:
+          type: integer
+          default: 0
+        moq_price_limit:
+          type: integer
+          default: 0
+    EmailRequestRequest:
+      type: object
+      properties:
+        subject:
+          type: string
+          minLength: 1
+          default: ''
+        body:
+          type: string
+          minLength: 1
+          default: ''
+    Group:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        photo_url:
+          type: string
+          readOnly: true
+        banner_url:
+          type: string
+          readOnly: true
+        icon_url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        invalid:
+          type: boolean
+      required:
+      - banner_url
+      - icon_url
+      - id
+      - name
+      - photo_url
+    GroupRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        photo:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        banner:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        icon:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+      required:
+      - name
+    HomePage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/HomePagePhoto'
+        banner_text:
+          type: string
+          maxLength: 256
+        banner_color:
+          type: string
+          maxLength: 8
+        description:
+          type: string
+        show_banner:
+          type: boolean
+        seller:
+          type: integer
+      required:
+      - id
+      - photos
+      - seller
+    HomePageBrand:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        photo_url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        extra_url:
+          type: string
+          format: uri
+          maxLength: 512
+        invalid:
+          type: boolean
+      required:
+      - id
+      - name
+      - photo_url
+    HomePageBrandRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        photo:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        extra_url:
+          type: string
+          format: uri
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+      required:
+      - name
+    HomePagePhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        button_text:
+          type: string
+          maxLength: 64
+        extra_url:
+          type: string
+          format: uri
+          maxLength: 512
+        is_master:
+          type: boolean
+        sequence:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+      required:
+      - id
+      - url
+    HomePageRequestRequest:
+      type: object
+      properties:
+        banner_text:
+          type: string
+          minLength: 1
+          default: ''
+        banner_color:
+          type: string
+          minLength: 1
+          default: ''
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        show_banner:
+          type: boolean
+          default: false
+        video:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_2:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_3:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_4:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_5:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_6:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_7:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_8:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_5_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_6_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_7_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_8_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_5_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_6_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_7_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_8_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_5_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_6_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_7_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_8_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_is_master:
+          type: boolean
+          default: false
+        photo_2_is_master:
+          type: boolean
+          default: false
+        photo_3_is_master:
+          type: boolean
+          default: false
+        photo_4_is_master:
+          type: boolean
+          default: false
+        photo_5_is_master:
+          type: boolean
+          default: false
+        photo_6_is_master:
+          type: boolean
+          default: false
+        photo_7_is_master:
+          type: boolean
+          default: false
+        photo_8_is_master:
+          type: boolean
+          default: false
+    HomePageSeries:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        photo_url:
+          type: string
+          readOnly: true
+        commodities:
+          type: array
+          items:
+            type: integer
+        description:
+          type: string
+        extra_url:
+          type: string
+          format: uri
+          maxLength: 512
+        invalid:
+          type: boolean
+      required:
+      - id
+      - name
+      - photo_url
+    HomePageSeriesRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        commodity_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        photo:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        extra_url:
+          type: string
+          format: uri
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+      required:
+      - name
+    Login:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          readOnly: true
+        access_token:
+          type: string
+          readOnly: true
+        expired_time:
+          type: string
+          readOnly: true
+        rule:
+          type: string
+          readOnly: true
+      required:
+      - access_token
+      - expired_time
+      - refresh_token
+      - rule
+    LoginRequestRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - password
+    LogoutRequestRequest:
+      type: object
+      properties:
+        refresh_token:
+          type: string
+          minLength: 1
+      required:
+      - refresh_token
+    MonthlyBookSalesEnum:
+      enum:
+      - firststage
+      - secondstage
+      - thirdstage
+      - forthstage
+      - fifthstage
+      type: string
+      description: |-
+        * `firststage` - $0 to $500
+        * `secondstage` - $501 to $1,000
+        * `thirdstage` -  $1,001 to $2,500
+        * `forthstage` - $2,501 to $5,000
+        * `fifthstage` - $5,001 to UP
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        sku:
+          type: string
+          maxLength: 32
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        quantity:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+        photo:
+          type: string
+          format: uri
+          nullable: true
+        status:
+          $ref: '#/components/schemas/OrderStatusEnum'
+        description:
+          type: string
+        created_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        updated_time:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        established_time:
+          type: string
+          format: date-time
+          nullable: true
+        seller:
+          type: integer
+        buyer:
+          type: integer
+        bill:
+          type: integer
+          nullable: true
+        commodity:
+          type: integer
+          nullable: true
+      required:
+      - buyer
+      - created_time
+      - id
+      - name
+      - price
+      - seller
+      - updated_time
+    OrderRequestPutRequest:
+      type: object
+      properties:
+        quantity:
+          type: integer
+          default: 0
+        description:
+          type: string
+          minLength: 1
+          default: ''
+    OrderRequestRequest:
+      type: object
+      properties:
+        commodity_id:
+          type: integer
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          default: '0.00'
+        quantity:
+          type: integer
+          default: 0
+        description:
+          type: string
+          minLength: 1
+          default: ''
+      required:
+      - commodity_id
+    OrderStatusEnum:
+      enum:
+      - established
+      - notestablished
+      type: string
+      description: |-
+        * `established` - Established
+        * `notestablished` - Not Established
+    OrganizationTypeEnum:
+      enum:
+      - soleproprietor
+      - partnership
+      - singlelcc
+      - corpstate
+      - other
+      type: string
+      description: |-
+        * `soleproprietor` - Sole Proprietor
+        * `partnership` - Partnership
+        * `singlelcc` - Single LLC
+        * `corpstate` - Corp (State)
+        * `other` - Other
+    PackingMaterialEnum:
+      enum:
+      - epsfoam
+      - cardboardenclosure
+      type: string
+      description: |-
+        * `epsfoam` - EPS Foam
+        * `cardboardenclosure` - Cardboard Enclosure
+    PromotionPage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        photos:
+          type: array
+          items:
+            $ref: '#/components/schemas/PromotionPagePhoto'
+        name:
+          type: string
+          maxLength: 128
+        description:
+          type: string
+        invalid:
+          type: boolean
+        seller:
+          type: integer
+        commodities:
+          type: array
+          items:
+            type: integer
+      required:
+      - id
+      - name
+      - photos
+      - seller
+    PromotionPagePhoto:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        button_text:
+          type: string
+          maxLength: 64
+        extra_url:
+          type: string
+          format: uri
+          maxLength: 512
+        sequence:
+          type: integer
+          maximum: 4294967295
+          minimum: 0
+          format: int64
+      required:
+      - id
+      - url
+    PromotionPageRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        commodity_ids:
+          type: array
+          items:
+            type: integer
+          default: []
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+        video:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_2:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_3:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_4:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        photo_1_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_description:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_button_text:
+          type: string
+          minLength: 1
+          default: ''
+        photo_1_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_2_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_3_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+        photo_4_extra_url:
+          type: string
+          minLength: 1
+          default: ''
+      required:
+      - name
+    Rule:
+      type: object
+      properties:
+        rule:
+          type: string
+          readOnly: true
+      required:
+      - rule
+    RuleEnum:
+      enum:
+      - unverified
+      - rejected
+      - unauthorized
+      - authorized
+      type: string
+      description: |-
+        * `unverified` - Unverified
+        * `rejected` - Rejected
+        * `unauthorized` - Unauthorized
+        * `authorized` - Authorized
+    RuleRequestRequest:
+      type: object
+      properties:
+        rule:
+          $ref: '#/components/schemas/RuleEnum'
+      required:
+      - rule
+    SellTypeEnum:
+      enum:
+      - unit
+      - set
+      - pack
+      type: string
+      description: |-
+        * `unit` - Unit
+        * `set` - Set
+        * `pack` - Pack
+    Series:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        photo_url:
+          type: string
+          readOnly: true
+        banner_url:
+          type: string
+          readOnly: true
+        icon_url:
+          type: string
+          readOnly: true
+        description:
+          type: string
+        invalid:
+          type: boolean
+        sub_series:
+          type: array
+          items:
+            $ref: '#/components/schemas/SubSeries'
+          readOnly: true
+      required:
+      - banner_url
+      - icon_url
+      - id
+      - name
+      - photo_url
+      - sub_series
+    SeriesRequestRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+        photo:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        banner:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        icon:
+          type: string
+          format: binary
+          nullable: true
+          default: null
+        description:
+          type: string
+          minLength: 1
+          default: ''
+        invalid:
+          type: boolean
+          default: false
+      required:
+      - name
+    Status581Enum:
+      enum:
+      - cancel
+      - pendingforpayment
+      - processing
+      - back
+      - shipped
+      type: string
+      description: |-
+        * `cancel` - Cancel
+        * `pendingforpayment` - Pending for payment
+        * `processing` - Processing
+        * `back` - Back
+        * `shipped` - Shipped
+    SubSeries:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 128
+        photo:
+          type: string
+          format: uri
+          nullable: true
+        banner:
+          type: string
+          format: uri
+          nullable: true
+        icon:
+          type: string
+          format: uri
+          nullable: true
+        description:
+          type: string
+        invalid:
+          type: boolean
+      required:
+      - id
+      - name
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 64
+      required:
+      - id
+      - name
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+    TokenRefreshRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+  securitySchemes:
+    jwtAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "JWT"
